@@ -132,7 +132,7 @@ def minimization(start):
     except:
         return ['Singular', θseries, llseries, start]
 
-    if (np.all(np.linalg.eigvals(Σ0)>=0)) & (np.all(abs(np.linalg.eigvals(Ass))<1) & (np.all(np.linalg.eigvals(Σs)>=0))):
+    if np.all(abs(np.linalg.eigvals(Ass))<1):
         try:
             θ_opt = sp.optimize.minimize(ll, start, method = 'L-BFGS-B', bounds = bnds, callback = callback, tol=1e-9)  
             return [θ_opt, θseries, llseries, start]
